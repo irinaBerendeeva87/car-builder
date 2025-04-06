@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Schematic Example</title>
+    <div>
+        <script data-cfasync="false" type="text/javascript"
+                src="https://app.ecwid.com/script.js?114564252&data_platform=code&data_date=2023-11-28"
+                charset="utf-8"></script>
+        <script type="text/javascript"> window.ec = window.ec || {};
+        window.ec.storefront = window.ec.storefront || {};
+        window.ec.storefront.enable_navigation = true;
+        xProductBrowser("id=my-store-114564252");</script>
+    </div>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,45 +79,60 @@
 <h1>Car Schematic Example</h1>
 
 <div id="car-image">
-    <div id="cabin" class="car-part"></div>
+    <div id="cabine" class="car-part"></div>
     <div id="front-wheel" class="car-part"></div>
     <div id="rear-wheel" class="car-part"></div>
     <div id="frame" class="car-part"></div>
 </div>
 <script>
+    function getCartProducts() {
+            return new Promise((resolve) => {
+                Ecwid.Cart.get(function(cart) {
+                    const products = cart.items.map(item => ({
+                        id: item.product.id,
+                        name: item.product.name,
+                        quantity: item.quantity,
+                        price: item.product.price
+                    }));
+                    resolve(products);
+                });
+            });
+        }
+        
+        function showCartProducts() {
+            getCartProducts().then(products => {
+                const productList = products.map(product => 
+                    `Name: ${product.id}, Quantity: ${product.quantity}, Price: ${product.price}`).join("\n");
+                alert(`Cart Products:\n\n${productList}`);
+            });
+        }
 
-    document.getElementById('cabin').addEventListener('click', function() {
-        Ecwid.Cart.addProduct(736824529);
-    });
-
-    document.getElementById('front-wheel').addEventListener('click', function() {
-        Ecwid.Cart.addProduct(736824537);
-    });
-
-    document.getElementById('rear-wheel').addEventListener('click', function() {
-        Ecwid.Cart.addProduct(736824530);
-    });
-
-    document.getElementById('frame').addEventListener('click', function() {
-        Ecwid.Cart.addProduct(736824532);
-    });
-
+        document.getElementById('cabine').addEventListener('click', function() {
+            Ecwid.Cart.get(function(cart) {
+                    const isProductInCart = cart.items.some(item => item.product.id === 736824529);
+                    if (!isProductInCart) {
+                        Ecwid.Cart.addProduct(736824529);
+                    }
+                    showCartProducts();
+                });
+        });
+    
+        document.getElementById('front-wheel').addEventListener('click', function() {
+            Ecwid.Cart.addProduct(736824537);
+            showCartProducts();
+        });
+    
+        document.getElementById('rear-wheel').addEventListener('click', function() {
+            Ecwid.Cart.addProduct(736824530);
+            showCartProducts();
+        });
+    
+        document.getElementById('frame').addEventListener('click', function() {
+            Ecwid.Cart.addProduct(736824532);
+            showCartProducts();
+        });
 </script>
 <div id="my-store-114564252"></div>
-<div>
-    <script data-cfasync="false" type="text/javascript" src="https://app.ecwid.com/script.js?114564252&data_platform=code&data_date=2023-11-28" charset="utf-8"></script>
-    <script type="text/javascript">
-        window.ec = window.ec || {};
-        window.ec.storefront = window.ec.storefront || {};
-        window.ec.storefront.enable_navigation = true;
-        xProductBrowser("categoriesPerRow=3",
-                        "views=grid(3,3) list(10) table(20)",
-                        "categoryView=grid",
-                        "searchView=list",
-                        "defaultProductId=1",
-                        "filterBy=categoryId=0",
-                        "id=my-store-114564252");
-    </script>
-</div>
+
 </body>
 </html>
