@@ -3,90 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Example</title>
+    <title>Car Schematic Example</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
+            text-align: center;
         }
-        button {
-            padding: 10px 15px;
-            margin: 10px;
+        #car-image {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: #ddd;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .car-part {
+            position: absolute;
             cursor: pointer;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            background-color: #f0f0f0;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
         }
-        button:hover {
-            background-color: #e0e0e0;
+        .car-part:hover {
+            border: 1px solid #888;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        #boot {
+            width: 80px;
+            height: 40px;
+            top: 20px;
+            left: 10px;
+        }
+        #front-wheel {
+            width: 50px;
+            height: 50px;
+            bottom: 10px;
+            left: 260px;
+            border-radius: 50%;
+            background-color: #888;
+        }
+        #rear-wheel {
+            width: 50px;
+            height: 50px;
+            bottom: 10px;
+            left: 50px;
+            border-radius: 50%;
+            background-color: #888;
+        }
+        #frame {
+            width: 360px;
+            height: 75px;
+            top: 80px;
+            left: 20px;
+            border: 2px solid #444;
+        }
+        #cabine {
+            width: 100px;
+            height: 60px;
+            top: 20px;
+            left: 120px;
+            border: 2px solid #444;
+            background-color: rgba(200, 200, 200, 0.5);
         }
     </style>
 </head>
 <body>
-<h1>Button Click Example</h1>
+<h1>Car Schematic Example</h1>
 
-<div>
-    <button id="button1">Button 1</button>
-    <button id="button2">Button 2</button>
-    <button id="button3">Button 3</button>
-    <button id="button4">Button 4</button>
+<div id="car-image">
+    <div id="boot" class="car-part"></div>
+    <div id="cabin" class="car-part"></div>
+    <div id="front-wheel" class="car-part"></div>
+    <div id="rear-wheel" class="car-part"></div>
+    <div id="frame" class="car-part"></div>
+    <div id="cabine" class="car-part"></div>
 </div>
-
-<div id="output">Click a button to see a message...</div>
 
 <script>
-    // Get references to all buttons
-    const button1 = document.getElementById('button1');
-    const button2 = document.getElementById('button2');
-    const button3 = document.getElementById('button3');
-    const button4 = document.getElementById('button4');
-    const output = document.getElementById('output');
-
-    // Add click event listeners to each button
-    button1.addEventListener('click', function() {
-        Ecwid.Cart.addProduct(736824529);
-        alert('Button 1 was clicked!');
-        output.textContent = 'Button 1 was clicked!';
-        console.log('Button 1 clicked');
+    // Click event handlers for the car parts
+    document.getElementById('boot').addEventListener('click', function() {
+        alert('Boot was clicked!');
     });
 
-    button2.addEventListener('click', function() {
-        alert('Button 2 was clicked!');
-        output.textContent = 'Button 2 was clicked!';
-        console.log('Button 2 clicked');
+    document.getElementById('cabin').addEventListener('click', function() {
+        alert('Cabin was clicked!');
     });
 
-    button3.addEventListener('click', function() {
-        alert('Button 3 was clicked!');
-        output.textContent = 'Button 3 was clicked!';
-        console.log('Button 3 clicked');
+    document.getElementById('front-wheel').addEventListener('click', function() {
+        alert('Front Wheel was clicked!');
     });
 
-    button4.addEventListener('click', function() {
-        alert('Button 4 was clicked!');
-        output.textContent = 'Button 4 was clicked!';
-        console.log('Button 4 clicked');
+    document.getElementById('rear-wheel').addEventListener('click', function() {
+        alert('Rear Wheel was clicked!');
+    });
+
+    document.getElementById('frame').addEventListener('click', function() {
+        alert('Frame was clicked!');
+    });
+
+    document.getElementById('cabine').addEventListener('click', function() {
+        alert('Cabine was clicked!');
     });
 </script>
-<!-- Ecwid Store Widget -->
-<div id="my-store-114564252"></div>
-<div>
-    <script data-cfasync="false" type="text/javascript" src="https://app.ecwid.com/script.js?114564252&data_platform=code&data_date=2023-11-28" charset="utf-8"></script>
-    <script type="text/javascript">
-        window.ec = window.ec || {};
-        window.ec.storefront = window.ec.storefront || {};
-        window.ec.storefront.enable_navigation = true;
-        xProductBrowser("categoriesPerRow=3",
-                        "views=grid(3,3) list(10) table(20)",
-                        "categoryView=grid",
-                        "searchView=list",
-                        "defaultProductId=1",
-                        "filterBy=categoryId=0",
-                        "id=my-store-114564252");
-    </script>
-</div>
 
 </body>
 </html>
