@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+        }
+        button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+<h1>Button Click Example</h1>
+
+<div>
+    <button id="button1">Button 1</button>
+    <button id="button2">Button 2</button>
+    <button id="button3">Button 3</button>
+    <button id="button4">Button 4</button>
+</div>
+
+<div id="output">Click a button to see a message...</div>
+
+<script>
+    // Get references to all buttons
+    const button1 = document.getElementById('button1');
+    const button2 = document.getElementById('button2');
+    const button3 = document.getElementById('button3');
+    const button4 = document.getElementById('button4');
+    const output = document.getElementById('output');
+
+    // Add click event listeners to each button
+    button1.addEventListener('click', function() {
+        Ecwid.Cart.addProduct(736824529);
+        alert('Button 1 was clicked!');
+        output.textContent = 'Button 1 was clicked!';
+        console.log('Button 1 clicked');
+    });
+
+    button2.addEventListener('click', function() {
+        alert('Button 2 was clicked!');
+        output.textContent = 'Button 2 was clicked!';
+        console.log('Button 2 clicked');
+    });
+
+    button3.addEventListener('click', function() {
+        alert('Button 3 was clicked!');
+        output.textContent = 'Button 3 was clicked!';
+        console.log('Button 3 clicked');
+    });
+
+    button4.addEventListener('click', function() {
+        alert('Button 4 was clicked!');
+        output.textContent = 'Button 4 was clicked!';
+        console.log('Button 4 clicked');
+    });
+</script>
+<!-- Ecwid Store Widget -->
+<div id="my-store-114564252"></div>
+<div>
+    <script data-cfasync="false" type="text/javascript" src="https://app.ecwid.com/script.js?114564252&data_platform=code&data_date=2023-11-28" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.ec = window.ec || {};
+        window.ec.storefront = window.ec.storefront || {};
+        window.ec.storefront.enable_navigation = true;
+        xProductBrowser("categoriesPerRow=3",
+                        "views=grid(3,3) list(10) table(20)",
+                        "categoryView=grid",
+                        "searchView=list",
+                        "defaultProductId=1",
+                        "filterBy=categoryId=0",
+                        "id=my-store-114564252");
+    </script>
+</div>
+
+</body>
+</html>
