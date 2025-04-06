@@ -123,6 +123,24 @@ function showCartProducts() {
             });
         });
     });</script>
+
+
+<div style="margin-top: 20px;">
+    <button onclick="clearCart()">Clear All Parts</button>
+</div>
+<script>
+    function clearCart() {
+        Ecwid.Cart.get(cart => {
+            if (cart.items.length === 0) {
+                alert('Your cart is already empty.');
+            } else {
+                Ecwid.Cart.clear(() => {
+                    alert('All parts have been removed from the cart.');
+                });
+            }
+        });
+    }
+</script>
 <div id="my-store-114564252"></div>
 </body>
 </html>
