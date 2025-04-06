@@ -74,6 +74,21 @@
             border: 2px solid #4CAF50 !important; /* Green border */
         }
 
+        /* Blinking animation */
+        .blinking {
+            animation: blink 1s step-start infinite;
+        }
+
+        /* Keyframes for blinking effect */
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -106,19 +121,32 @@
 
 
 carParts.forEach(part => {
-    document.getElementById(part.id).addEventListener('click', () => {
+    const partElement = document.getElementById(part.id);
+
+    partElement.addEventListener('click', () => {
+        // Add the blinking class when the operation starts
+        partElement.classList.add('blinking');
+
         Ecwid.Cart.get(cart => {
             const isInCart = cart.items.some(item => item.product.id === part.productId);
+
             if (!isInCart) {
                 // Part is not in the cart, add it
                 Ecwid.Cart.addProduct(part.productId, () => {
                     // Wait for the server action to complete, then update the visual state
                     updatePartsVisualState();
+
+                    // Remove the blinking class when the operation is complete
+                    partElement.classList.remove('blinking');
                 });
+            } else {
+                // If already in the cart, stop blinking immediately
+                partElement.classList.remove('blinking');
             }
         });
     });
 });
+
 
 
 updatePartsVisualState()
