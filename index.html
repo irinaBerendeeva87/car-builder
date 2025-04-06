@@ -136,17 +136,21 @@ function showCartProducts() {
 carParts.forEach(part => {
     document.getElementById(part.id).addEventListener('click', () => {
         Ecwid.Cart.get(cart => {
-            const isProductInCart = cart.items.some(item => item.product.id === part.productId);
-            if (!isProductInCart) {
-                Ecwid.Cart.addProduct(part.productId);
-                alert(`Added ${part.name} to the cart.`);
-            } else {
-                alert(`${part.name} is already in the cart.`);
+            const isInCart = cart.items.some(item => item.product.id === part.productId);
+            if (!isInCart) {
+                // Part is not in the cart, add it
+                Ecwid.Cart.addProduct(part.productId, () => {
+                    // Wait for the server action to complete, then update the visual state
+                    updatePartsVisualState();
+                });
             }
-            showCartProducts();
         });
     });
-});</script>
+});
+
+
+
+</script>
 
 <div style="margin-top: 10px;">
     <button onclick="updatePartsVisualState()">Refresh Parts Visual State</button>
