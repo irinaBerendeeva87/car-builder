@@ -31,27 +31,23 @@
             border: 1px solid #888;
             background-color: rgba(0, 0, 0, 0.1);
         }
-        #boot {
-            width: 80px;
-            height: 40px;
-            top: 20px;
-            left: 10px;
-        }
-        #front-wheel {
+
+       #front-wheel {
             width: 50px;
             height: 50px;
             bottom: 10px;
             left: 260px;
             border-radius: 50%;
-            background-color: #888;
+            background-color: #000; /* Changed from #888 to #000 for black */
         }
+
         #rear-wheel {
             width: 50px;
             height: 50px;
             bottom: 10px;
             left: 50px;
             border-radius: 50%;
-            background-color: #888;
+            background-color: #000; /* Changed from #888 to #000 for black */
         }
         #frame {
             width: 360px;
@@ -74,40 +70,45 @@
 <h1>Car Schematic Example</h1>
 
 <div id="car-image">
-    <div id="boot" class="car-part"></div>
     <div id="cabin" class="car-part"></div>
     <div id="front-wheel" class="car-part"></div>
     <div id="rear-wheel" class="car-part"></div>
     <div id="frame" class="car-part"></div>
-    <div id="cabine" class="car-part"></div>
 </div>
-
 <script>
-    // Click event handlers for the car parts
-    document.getElementById('boot').addEventListener('click', function() {
-        alert('Boot was clicked!');
-    });
 
     document.getElementById('cabin').addEventListener('click', function() {
-        alert('Cabin was clicked!');
+        Ecwid.Cart.addProduct(736824529);
     });
 
     document.getElementById('front-wheel').addEventListener('click', function() {
-        alert('Front Wheel was clicked!');
+        Ecwid.Cart.addProduct(736824537);
     });
 
     document.getElementById('rear-wheel').addEventListener('click', function() {
-        alert('Rear Wheel was clicked!');
+        Ecwid.Cart.addProduct(736824530);
     });
 
     document.getElementById('frame').addEventListener('click', function() {
-        alert('Frame was clicked!');
+        Ecwid.Cart.addProduct(736824532);
     });
 
-    document.getElementById('cabine').addEventListener('click', function() {
-        alert('Cabine was clicked!');
-    });
 </script>
-
+<div id="my-store-114564252"></div>
+<div>
+    <script data-cfasync="false" type="text/javascript" src="https://app.ecwid.com/script.js?114564252&data_platform=code&data_date=2023-11-28" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.ec = window.ec || {};
+        window.ec.storefront = window.ec.storefront || {};
+        window.ec.storefront.enable_navigation = true;
+        xProductBrowser("categoriesPerRow=3",
+                        "views=grid(3,3) list(10) table(20)",
+                        "categoryView=grid",
+                        "searchView=list",
+                        "defaultProductId=1",
+                        "filterBy=categoryId=0",
+                        "id=my-store-114564252");
+    </script>
+</div>
 </body>
 </html>
