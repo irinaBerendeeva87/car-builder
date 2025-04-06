@@ -68,6 +68,12 @@
             border: 2px solid #444;
             background-color: rgba(200, 200, 200, 0.5);
         }
+
+        .in-cart {
+            background-color: rgba(76, 175, 80, 0.3); /* Light green background */
+            border: 2px solid #4CAF50 !important; /* Green border */
+        }
+
     </style>
 </head>
 <body>
@@ -91,12 +97,29 @@
     <div id="frame" class="car-part"></div>
 </div>
 <script> const carParts = [
-        { id: 'cabine', productId: 736824529, name: 'Cabine' },
-        { id: 'front-wheel', productId: 736824537, name: 'Front Wheel' },
-        { id: 'rear-wheel', productId: 736824530, name: 'Rear Wheel' },
-        { id: 'frame', productId: 736824532, name: 'Frame' }
-    ];
+    {id: 'cabine', productId: 736824529, name: 'Cabine'},
+    {id: 'front-wheel', productId: 736824537, name: 'Front Wheel'},
+    {id: 'rear-wheel', productId: 736824530, name: 'Rear Wheel'},
+    {id: 'frame', productId: 736824532, name: 'Frame'}
+];
 
+function updatePartsVisualState() {
+    Ecwid.Cart.get(cart => {
+        // First reset all parts to their default state
+        carParts.forEach(part => {
+            document.getElementById(part.id).classList.remove('in-cart');
+        });
+
+        // Then highlight parts that are in the cart
+        cart.items.forEach(item => {
+            const cartProductId = item.product.id;
+            const matchingPart = carParts.find(part => part.productId === cartProductId);
+            if (matchingPart) {
+                document.getElementById(matchingPart.id).classList.add('in-cart');
+            }
+        });
+    });
+}
 
 // Function to show the products in the cart using an alert
 function showCartProducts() {
@@ -109,21 +132,25 @@ function showCartProducts() {
         }
     });
 }
-    carParts.forEach(part => {
-        document.getElementById(part.id).addEventListener('click', () => {
-            Ecwid.Cart.get(cart => {
-                const isProductInCart = cart.items.some(item => item.product.id === part.productId);
-                if (!isProductInCart) {
-                    Ecwid.Cart.addProduct(part.productId);
-                    alert(`Added ${part.name} to the cart.`);
-                } else {
-                    alert(`${part.name} is already in the cart.`);
-                }
-                showCartProducts();
-            });
-        });
-    });</script>
 
+carParts.forEach(part => {
+    document.getElementById(part.id).addEventListener('click', () => {
+        Ecwid.Cart.get(cart => {
+            const isProductInCart = cart.items.some(item => item.product.id === part.productId);
+            if (!isProductInCart) {
+                Ecwid.Cart.addProduct(part.productId);
+                alert(`Added ${part.name} to the cart.`);
+            } else {
+                alert(`${part.name} is already in the cart.`);
+            }
+            showCartProducts();
+        });
+    });
+});</script>
+
+<div style="margin-top: 10px;">
+    <button onclick="updatePartsVisualState()">Refresh Parts Visual State</button>
+</div>
 
 <div style="margin-top: 20px;">
     <button onclick="clearCart()">Clear All Parts</button>
