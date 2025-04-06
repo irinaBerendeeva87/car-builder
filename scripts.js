@@ -1,19 +1,31 @@
-
 function updatePartsVisualState() {
     Ecwid.Cart.get(cart => {
-        // First reset all parts to their default state
-        carParts.forEach(part => {
-            document.getElementById(part.id).classList.remove('in-cart');
-        });
+        let allPartsInCart = carParts.every(part =>
+            cart.items.some(item => item.product.id === part.productId)
+        );
 
-        // Then highlight parts that are in the cart
-        cart.items.forEach(item => {
-            const cartProductId = item.product.id;
-            const matchingPart = carParts.find(part => part.productId === cartProductId);
-            if (matchingPart) {
-                document.getElementById(matchingPart.id).classList.add('in-cart');
+        carParts.forEach(part => {
+            const partElement = document.getElementById(part.id);
+            const isInCart = cart.items.some(item => item.product.id === part.productId);
+
+            // Update part visual state
+            if (isInCart) {
+                partElement.classList.add('in-cart');
+            } else {
+                partElement.classList.remove('in-cart');
             }
         });
+
+        // Show or hide the completion message based on whether all parts are in the cart
+        const completionMessage = document.getElementById('completion-message');
+        const carImage = document.getElementById('car-image');
+        if (allPartsInCart) {
+            completionMessage.style.display = 'block';
+            carImage.style.display = 'none';
+        } else {
+            completionMessage.style.display = 'none';
+            carImage.style.display = 'block';
+        }
     });
 }
 

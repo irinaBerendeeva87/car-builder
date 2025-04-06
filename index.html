@@ -104,14 +104,19 @@
     </script>
 </div>
 <script src="scripts.js"></script>
-<h1>Car Schematic Example</h1>
 
 <div id="car-image">
+    <h1>Assemble your car</h1>
     <div id="cabine" class="car-part"></div>
     <div id="front-wheel" class="car-part"></div>
     <div id="rear-wheel" class="car-part"></div>
     <div id="frame" class="car-part"></div>
 </div>
+
+<div id="completion-message" style="display: none; margin-top: 20px; font-size: 18px; color: green; font-weight: bold;">
+    You’ve assembled the car.
+</div>
+
 <script> const carParts = [
     {id: 'cabine', productId: 736824529, name: 'Cabine'},
     {id: 'front-wheel', productId: 736824537, name: 'Front Wheel'},
@@ -119,6 +124,7 @@
     {id: 'frame', productId: 736824532, name: 'Frame'}
 ];
 
+updatePartsVisualState();
 
 carParts.forEach(part => {
     const partElement = document.getElementById(part.id);
