@@ -12,6 +12,7 @@
             padding: 20px;
             text-align: center;
         }
+
         #car-image {
             position: relative;
             width: 400px;
@@ -21,34 +22,36 @@
             border: 2px solid #ccc;
             border-radius: 10px;
         }
+
         .car-part {
             position: absolute;
             cursor: pointer;
             border: 1px solid transparent;
             transition: all 0.2s ease;
         }
+
         .car-part:hover {
             border: 1px solid #888;
             background-color: rgba(0, 0, 0, 0.1);
         }
 
-       #front-wheel {
-            width: 50px;
-            height: 50px;
-            bottom: 10px;
-            left: 260px;
-            border-radius: 50%;
-            background-color: #000; /* Changed from #888 to #000 for black */
-        }
-
+        #front-wheel,
         #rear-wheel {
             width: 50px;
             height: 50px;
             bottom: 10px;
-            left: 50px;
             border-radius: 50%;
-            background-color: #000; /* Changed from #888 to #000 for black */
+            background-color: #000;
         }
+
+        #front-wheel {
+            left: 260px;
+        }
+
+        #rear-wheel {
+            left: 50px;
+        }
+
         #frame {
             width: 360px;
             height: 75px;
@@ -56,6 +59,7 @@
             left: 20px;
             border: 2px solid #444;
         }
+
         #cabine {
             width: 100px;
             height: 60px;
@@ -71,10 +75,12 @@
     <script data-cfasync="false" type="text/javascript"
             src="https://app.ecwid.com/script.js?114564252&data_platform=code&data_date=2023-11-28"
             charset="utf-8"></script>
-    <script type="text/javascript"> window.ec = window.ec || {};
+    <script type="text/javascript">
+        window.ec = window.ec || {};
         window.ec.storefront = window.ec.storefront || {};
         window.ec.storefront.enable_navigation = true;
-        xProductBrowser("id=my-store-114564252");</script>
+        xProductBrowser("id=my-store-114564252");
+    </script>
 </div>
 <h1>Car Schematic Example</h1>
 
@@ -84,55 +90,39 @@
     <div id="rear-wheel" class="car-part"></div>
     <div id="frame" class="car-part"></div>
 </div>
-<script>
-    function getCartProducts() {
-            return new Promise((resolve) => {
-                Ecwid.Cart.get(function(cart) {
-                    const products = cart.items.map(item => ({
-                        id: item.product.id,
-                        name: item.product.name,
-                        quantity: item.quantity,
-                        price: item.product.price
-                    }));
-                    resolve(products);
-                });
-            });
-        }
-        
-        function showCartProducts() {
-            getCartProducts().then(products => {
-                const productList = products.map(product => 
-                    `Name: ${product.id}, Quantity: ${product.quantity}, Price: ${product.price}`).join("\n");
-                alert(`Cart Products:\n\n${productList}`);
-            });
-        }
+<script> const carParts = [
+        { id: 'cabine', productId: 736824529, name: 'Cabine' },
+        { id: 'front-wheel', productId: 736824537, name: 'Front Wheel' },
+        { id: 'rear-wheel', productId: 736824530, name: 'Rear Wheel' },
+        { id: 'frame', productId: 736824532, name: 'Frame' }
+    ];
 
-        document.getElementById('cabine').addEventListener('click', function() {
-            Ecwid.Cart.get(function(cart) {
-                    const isProductInCart = cart.items.some(item => item.product.id === 736824529);
-                    if (!isProductInCart) {
-                        Ecwid.Cart.addProduct(736824529);
-                    }
-                    showCartProducts();
-                });
+
+// Function to show the products in the cart using an alert
+function showCartProducts() {
+    Ecwid.Cart.get(cart => {
+        if (cart.items.length === 0) {
+            alert('Your cart is empty.');
+        } else {
+            const productDetails = cart.items.map(item => `${item.product.name} - Quantity: ${item.quantity}`).join('\n');
+            alert(`Cart Details:\n${productDetails}`);
+        }
+    });
+}
+    carParts.forEach(part => {
+        document.getElementById(part.id).addEventListener('click', () => {
+            Ecwid.Cart.get(cart => {
+                const isProductInCart = cart.items.some(item => item.product.id === part.productId);
+                if (!isProductInCart) {
+                    Ecwid.Cart.addProduct(part.productId);
+                    alert(`Added ${part.name} to the cart.`);
+                } else {
+                    alert(`${part.name} is already in the cart.`);
+                }
+                showCartProducts();
+            });
         });
-    
-        document.getElementById('front-wheel').addEventListener('click', function() {
-            Ecwid.Cart.addProduct(736824537);
-            showCartProducts();
-        });
-    
-        document.getElementById('rear-wheel').addEventListener('click', function() {
-            Ecwid.Cart.addProduct(736824530);
-            showCartProducts();
-        });
-    
-        document.getElementById('frame').addEventListener('click', function() {
-            Ecwid.Cart.addProduct(736824532);
-            showCartProducts();
-        });
-</script>
+    });</script>
 <div id="my-store-114564252"></div>
-
 </body>
 </html>
