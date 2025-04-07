@@ -124,38 +124,25 @@
     {id: 'frame', productId: 736824532, name: 'Frame'}
 ];
 
-updatePartsVisualState();
+updateUiOnCartChanged();
 
 carParts.forEach(part => {
     const partElement = document.getElementById(part.id);
 
     partElement.addEventListener('click', () => {
-        // Add the blinking class when the operation starts
-        partElement.classList.add('blinking');
-
         Ecwid.Cart.get(cart => {
             const isInCart = cart.items.some(item => item.product.id === part.productId);
-
             if (!isInCart) {
                 // Part is not in the cart, add it
                 Ecwid.Cart.addProduct(part.productId, () => {
-                    // Wait for the server action to complete, then update the visual state
-                    updatePartsVisualState();
-
-                    // Remove the blinking class when the operation is complete
-                    partElement.classList.remove('blinking');
                 });
-            } else {
-                // If already in the cart, stop blinking immediately
-                partElement.classList.remove('blinking');
+            }else {
+                const productIndex = cart.items.findIndex(item => item.product.id === part.productId);
+                Ecwid.Cart.removeProduct(productIndex)
             }
         });
     });
 });
-
-
-
-updatePartsVisualState()
 </script>
 
 <div style="margin-top: 10px;">

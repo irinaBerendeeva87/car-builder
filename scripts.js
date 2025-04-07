@@ -1,5 +1,5 @@
-function updatePartsVisualState() {
-    Ecwid.Cart.get(cart => {
+function updateUiOnCartChanged() {
+    Ecwid.OnCartChanged.add(cart => {
         let allPartsInCart = carParts.every(part =>
             cart.items.some(item => item.product.id === part.productId)
         );
