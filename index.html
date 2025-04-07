@@ -13,9 +13,9 @@
             text-align: center;
         }
 
-        #car-image {
+        #area {
             position: relative;
-            width: 400px;
+            width: 450px;
             height: 400px;
             margin: 0 auto;
             background-color: #ddd;
@@ -88,19 +88,26 @@
     </script>
 </div>
 
-<div id="car-image">
-    <h1>Assemble your car</h1>
-    <div id="cabine" class="car-part"></div>
-    <div id="front-wheel" class="car-part"></div>
-    <div id="rear-wheel" class="car-part"></div>
-    <div id="frame" class="car-part"></div>
-</div>
+<div id="area">
+    <div id="car-image">
+        <h1>Assemble your car</h1>
+        <div id="cabine" class="car-part"></div>
+        <div id="front-wheel" class="car-part"></div>
+        <div id="rear-wheel" class="car-part"></div>
+        <div id="frame" class="car-part"></div>
+    </div>
 
-<div id="completion-message" style="display: none; margin-top: 20px; font-size: 18px; color: green; font-weight: bold;">
-    You’ve assembled the car.
+    <div id="completion-message">
+        <h1>You’ve assembled the car.</h1>
+    </div>
 </div>
 
 <script>
+    const completionMessage = document.getElementById('completion-message');
+    const carImage = document.getElementById('car-image');
+    completionMessage.style.display = 'none';
+    carImage.style.display = 'none';
+
     const carParts = [
         {id: 'cabine', productId: 736824529, name: 'Cabine'},
         {id: 'front-wheel', productId: 736824537, name: 'Front Wheel'},
@@ -120,8 +127,6 @@
             }
         });
 
-        const completionMessage = document.getElementById('completion-message');
-        const carImage = document.getElementById('car-image');
         let allPartsInCart = carParts.every(part =>
             cart.items.some(item => item.product.id === part.productId)
         );
@@ -162,6 +167,7 @@
         });
     }
 </script>
-<div id="my-store-114564252"></div>
+<div id="my-store-114564252" style="display: none"></div>
+
 </body>
 </html>
