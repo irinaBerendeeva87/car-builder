@@ -1,10 +1,10 @@
-## ✅ UI Testing Checklist
+### ✅ UI Testing Checklist
 
 This checklist covers UI, accessibility, functional, and backend validations for any button on the web application.
 
 ---
 
-### 1. 🎨 Visual & UI Checks
+#### 1. 🎨 Visual & UI Checks
 
 - [ ] **Default State**
     - Matches design specs (colors, sizes, text).
@@ -20,7 +20,7 @@ This checklist covers UI, accessibility, functional, and backend validations for
 
 ---
 
-### 2. ♿ Accessibility (A11y)
+#### 2. ♿ Accessibility (A11y)
 
 - [ ] **ARIA Attributes**
     - Elements have `aria-label` where text is unclear.
@@ -33,7 +33,7 @@ This checklist covers UI, accessibility, functional, and backend validations for
 
 ---
 
-### 3. ⚙️ Functional Checks
+#### 3. ⚙️ Functional Checks
 
 - [ ] **Basic Interaction**
     - Click triggers correct behavior (e.g., submit form, open modal).
@@ -46,7 +46,7 @@ This checklist covers UI, accessibility, functional, and backend validations for
 
 ---
 
-### 4. 🔐 Security & Compliance
+#### 4. 🔐 Security & Compliance
 
 - [ ] **CSRF Protection**
     - Token present in unsafe requests (POST/PUT/DELETE).
@@ -59,7 +59,7 @@ This checklist covers UI, accessibility, functional, and backend validations for
 
 ---
 
-### 5. 🌐 API & Backend Integration
+#### 5. 🌐 API & Backend Integration
 
 - [ ] **Request Validation**
     - Correct HTTP method is used.
@@ -74,7 +74,7 @@ This checklist covers UI, accessibility, functional, and backend validations for
 
 ---
 
-### 6. 🚀 Performance
+#### 6. 🚀 Performance
 
 - [ ] **Client-Side**
     - Interactions respond within 300ms (per Lighthouse).
@@ -85,7 +85,7 @@ This checklist covers UI, accessibility, functional, and backend validations for
 
 ---
 
-### 7. 🧪 Edge Cases
+#### 7. 🧪 Edge Cases
 
 - [ ] **User Roles**
     - Restricted features are hidden/disabled for unauthorized users.
@@ -99,7 +99,7 @@ This checklist covers UI, accessibility, functional, and backend validations for
 
 ---
 
-### 8. 📱 Device & Browser Coverage
+#### 8. 📱 Device & Browser Coverage
 
 - [ ] **Desktop Browsers**
     - Chrome, Firefox, Safari, Edge (latest ±2 versions).
@@ -111,7 +111,7 @@ This checklist covers UI, accessibility, functional, and backend validations for
 
 ---
 
-### 9. 🔒 Permissions
+#### 9. 🔒 Permissions
 
 - [ ] **Camera/Location Access**
     - Requests permissions when needed (e.g., QR scanning).  
