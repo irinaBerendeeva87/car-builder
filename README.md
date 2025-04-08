@@ -6,7 +6,7 @@ This repository contains all parts of the test assignment for Lightspeed. The ta
 
 #### 1. 🚗 Car Builder Task
 
-**Goal:** Create an interactive car builder using a JavaScript framework and Ecwid API.
+**Goal:** Create an interactive car builder using a JavaScript API.
 
 🔗 [Page](https://irinaberendeeva87.github.io/car-builder/)
 
