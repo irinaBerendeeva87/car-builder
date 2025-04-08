@@ -26,7 +26,7 @@ This repository contains all parts of the test assignment for Lightspeed. The ta
 
 #### 3. 📋 Testing Checklist
 
-**Goal:** Provide a test checklist for login functionality.
+**Goal:** Provide a checklist for testing any button on any website.
 
 📄 [UI Testing Checklist (Markdown)](./checklist/checklist.md)
 
