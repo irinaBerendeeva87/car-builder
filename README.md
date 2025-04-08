@@ -8,7 +8,7 @@ This repository contains all parts of the test assignment for Lightspeed. The ta
 
 **Goal:** Create an interactive car builder using a JavaScript framework and Ecwid API.
 
-🔗 [Page](https://irinaberendeeva87.github.io/car-builder/)
+🔗[Page](https://irinaberendeeva87.github.io/car-builder/)
 📁 Source code: located in [`/car-builder`](./car-builder)
 
 ---
